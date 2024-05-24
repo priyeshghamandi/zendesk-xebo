@@ -12,13 +12,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "axios": "^1.7.1",
     "body-parser": "^1.20.2",
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
-    "express": "^4.19.2",
-    "node-fetch": "^3.3.2",
-    "smooch": "^5.6.0",
-    "smooch-core": "^8.11.4"
+    "express": "^4.19.2"
   }
 }
