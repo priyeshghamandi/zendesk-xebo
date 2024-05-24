@@ -1,11 +1,8 @@
 require('dotenv').config()
-const axios = require('axios');
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
 const cors = require('cors');
-const router = express.Router();
-const PORT = process.env.PORT || '3000';
 
 const Xebo = require('./api/xebo.api');
 const Zendesk = require('./api/zendesk.api')
