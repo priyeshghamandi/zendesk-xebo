@@ -21,15 +21,15 @@ app.use(cors());
     app.use(bodyParser.urlencoded({limit: '50mb', extended: false }));
 
 
-router.get('/',function(req,res){
+app.get('/',function(req,res){
   res.status(200).json({"message": "path not found"});
 });
 
-router.get('/test',function(req,res){
+app.get('/test',function(req,res){
     res.status(200).json({"test": "test"});
 });
 
-router.post('/zendDesk', async (req,res) => {    
+app.post('/zendDesk', async (req,res) => {    
     console.log(req.body)
     const ticketData = req.body;
     const {ticketID, userEmail, metadata} = ticketData;
@@ -50,9 +50,9 @@ router.post('/zendDesk', async (req,res) => {
 
 });
 
-app.use('/', router);
-app.listen(PORT, () => {
-  console.log('Express server listening on port ' + PORT);
-});
+// app.use('/', router);
+// app.listen(PORT, () => {
+//   console.log('Express server listening on port ' + PORT);
+// });
 
 module.exports = app;
