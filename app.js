@@ -1,11 +1,16 @@
+require('dotenv').config()
 const axios = require('axios');
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
 const cors = require('cors');
+const router = express.Router();
+const PORT = (process.env.PORT || '3000');
+
 const Xebo = require('./api/xebo.api');
 const Zendesk = require('./api/zendesk.api')
 const Sunshine = require('./api/sunshine.api')
+
 
 const xeboAPI = new Xebo();
 const zendDeskAPI = new Zendesk();
@@ -16,15 +21,15 @@ app.use(cors());
     app.use(bodyParser.urlencoded({limit: '50mb', extended: false }));
 
 
-app.get('/',function(req,res){
+router.get('/',function(req,res){
   res.status(200).json({"message": "path not found"});
 });
 
-app.get('/test',function(req,res){
+router.get('/test',function(req,res){
     res.status(200).json({"test": "test"});
 });
 
-app.post('/zendDesk', async (req,res) => {    
+router.post('/zendDesk', async (req,res) => {    
     console.log(req.body)
     const ticketData = req.body;
     const {ticketID, userEmail, metadata} = ticketData;
@@ -43,6 +48,11 @@ app.post('/zendDesk', async (req,res) => {
       res.status(500).json({"error": error});
     }
 
+});
+
+app.use('/', router);
+app.listen(PORT, () => {
+  console.log('Express server listening on port ' + PORT);
 });
 
 module.exports = app;
