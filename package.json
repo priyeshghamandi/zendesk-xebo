@@ -2,11 +2,12 @@
   "name": "zend-server",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon bin/start",
-    "stop": "nodemon bin/stop"
+    "start": "node server.js",
+    "stop": "node bin/stop",
+    "dev": "nodemon server.js"
   },
   "keywords": [],
   "author": "",
