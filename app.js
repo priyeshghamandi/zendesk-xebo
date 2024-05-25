@@ -35,8 +35,8 @@ app.post('/zendDesk', async (req,res) => {
     
     try {
       const ticket = await zendDeskAPI.getTicket(ticketID);
-      console.log('\n\n\n\n ticket.tags ', ticket.tags)
-      const isWebhookPushed = ticket.tags ? ticket.tags.includes('webhook_pushed') : false;
+      console.log('\n\n\n\n ticket.tags ', ticket.ticket.tags)
+      const isWebhookPushed = ticket.ticket.tags ? ticket.ticket.tags.includes('webhook_pushed') : false;
       console.log('\n\n\n\n isWebhookPushed ', isWebhookPushed)
       if(isWebhookPushed) {
         res.status(200).json({message: "This ticket has already been updated"});
