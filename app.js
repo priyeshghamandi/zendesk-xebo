@@ -34,6 +34,12 @@ app.post('/zendDesk', async (req,res) => {
     const collectortoken = "P/e0970b57";    
     
     try {
+      const ticket = await zendDeskAPI.getTicket(ticketID);
+      const isWebhookPushed = ticket.tags.includes('webhook_pushed');
+      if(isWebhookPushed) {
+        res.status(200).json({message: "This ticket has already been updated"});
+      }
+
       const urlResponse = await xeboAPI.getSurveyURL(collectorID,collectortoken, userEmail, metadata);      
       const surveyURLMessage = urlResponse.data[0].message      
       const ticketAuditData = await zendDeskAPI.getTicketAudit(ticketID);
@@ -47,9 +53,5 @@ app.post('/zendDesk', async (req,res) => {
 
 });
 
-// app.use('/', router);
-// app.listen(PORT, () => {
-//   console.log('Express server listening on port ' + PORT);
-// });
 
 module.exports = app;

@@ -12,6 +12,10 @@ class Zendesk {
         return this._get(`tickets/${ticketID}/audits`);
     }
 
+    getTicket(ticketID) {
+        return this._get(`tickets/${ticketID}.json`);
+    }
+
     _get(url, query) {
         const params = { method: 'GET', json: true  };
         return this._request(url, params, query);
