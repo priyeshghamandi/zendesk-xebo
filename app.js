@@ -40,6 +40,7 @@ app.post('/zendDesk', async (req,res) => {
       console.log('\n\n\n\n isWebhookPushed ', isWebhookPushed)
       if(isWebhookPushed) {
         res.status(200).json({message: "This ticket has already been updated"});
+        return;
       }
 
       const urlResponse = await xeboAPI.getSurveyURL(collectorID,collectortoken, userEmail, metadata);      
