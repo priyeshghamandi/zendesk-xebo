@@ -43,6 +43,7 @@ app.post('/zendDesk', async (req,res) => {
         return;
       }
 
+      await zendDeskAPI.updateTicket(ticketID, {tags: ["webhook_pushed"] })
       const urlResponse = await xeboAPI.getSurveyURL(collectorID,collectortoken, userEmail, metadata);      
       const surveyURLMessage = urlResponse.data[0].message      
       const ticketAuditData = await zendDeskAPI.getTicketAudit(ticketID);

@@ -16,6 +16,16 @@ class Zendesk {
         return this._get(`tickets/${ticketID}.json`);
     }
 
+    updateTicket(ticketID, updateData) {
+        return this._put(`tickets/${ticketID}.json`,'',updateData);
+    }
+
+    _put(url,query,data) {
+        const params = { method: 'PUT'};
+        const body = {body: data}
+        return this._request(url, params, query, body);
+    }
+
     _get(url, query) {
         const params = { method: 'GET', json: true  };
         return this._request(url, params, query);
