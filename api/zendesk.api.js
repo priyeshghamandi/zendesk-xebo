@@ -16,8 +16,8 @@ class Zendesk {
         return this._get(`tickets/${ticketID}.json`);
     }
 
-    updateTicket(ticketID, updateData) {
-        return this._put(`tickets/${ticketID}.json`,'',updateData);
+    updateTicketTags(ticketID, tag) {
+        return this._put(`tickets/${ticketID}/tags.json`,'',updateData);
     }
 
     _put(url,query,data) {
