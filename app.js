@@ -27,22 +27,22 @@ app.get('/test',function(req,res){
 });
 
 app.post('/zendDesk', async (req,res) => {    
-    console.log(req.body)
+    console.log('\n\n\n\n\n ----------- body1 ----------- \n\n\n\n',req.body)
+    console.log('\n\n\n\n\n --------------------------------- \n\n\n\n')
     const ticketData = req.body;
     const {ticketID, userEmail, metadata} = ticketData;
     const collectorID = "665018e3739e7860660ab6ce";
     const collectortoken = "P/e0970b57";    
     
     try {
-      const ticket = await zendDeskAPI.getTicket(ticketID);
-      console.log('\n\n\n\n ticket.tags ', ticket.ticket.tags)
+      const ticket = await zendDeskAPI.getTicket(ticketID);      
       const isWebhookPushed = ticket.ticket.tags ? ticket.ticket.tags.includes('webhook_pushed') : false;
       console.log('\n\n\n\n isWebhookPushed ', isWebhookPushed)
       if(isWebhookPushed) {
         res.status(200).json({message: "This ticket has already been updated"});
         return;
       }
-
+      
       await zendDeskAPI.updateTicketTags(ticketID, "webhook_pushed")
       const urlResponse = await xeboAPI.getSurveyURL(collectorID,collectortoken, userEmail, metadata);      
       const surveyURLMessage = urlResponse.data[0].message      
