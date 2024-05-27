@@ -24,3 +24,7 @@
 	}
 }
 
+5. Add another trigger to Remove webhook_pushed tag when ticket is OPENED
+   ![image](https://github.com/priyeshghamandi/zendesk-xebo/assets/8115408/8c0e7e89-7426-431e-ae21-326455087c11)
+
+
