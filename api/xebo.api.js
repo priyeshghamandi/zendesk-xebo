@@ -9,9 +9,10 @@ class Xebo {
     }
 
         
-    async getSurveyURL(collectorID,collectortoken, emailAddress, metadata) {
+    async getSurveyURL(ticketID,collectorID,collectortoken, emailAddress, metadata) {
         const contacts = [{
             email: emailAddress,
+            ticketID,
             ...metadata
         }]
 
